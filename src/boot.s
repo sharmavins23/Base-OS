@@ -20,5 +20,6 @@ master:     adr         x0, bss_begin
                                             // Since kernel.c loops infinitely,
                                             //  this will never happen
 
-proc_hang:  wfe                             // Wait for an instruction
-            b           proc_hang
+proc_hang:  //wfe                             // Wait for an instruction
+            //b           proc_hang
+            b           main

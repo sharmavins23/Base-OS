@@ -22,8 +22,10 @@ void kernel_main() {
 
     uart_send_string("\n\nInitialization complete.\n");
 
-    // For now, loop forever and repeat character from UART input
-    while (1) {
-        uart_send(uart_recv());
-    }
+    // // For now, loop forever and repeat character from UART input
+    // while (1) {
+    //     uart_send(uart_recv());
+    // }
+
+    return;
 }

@@ -40,3 +40,23 @@ void gpio_pin_enable(u8 pinNumber) {
     // Write to GPPUDCLK to remove clock signal
     REGS_GPIO->pupd_enable_clocks[pinNumber / 32] = 0;
 }
+
+// Enables a GPIO pin for basic INPUT functionality
+void gpio_pin_enable_input(u8 pinNumber) {
+    gpio_pin_set_func(pinNumber, GFInput);
+}
+
+// Enables a GPIO pin for basic OUTPUT functionality
+void gpio_pin_enable_output(u8 pinNumber) {
+    gpio_pin_set_func(pinNumber, GFOutput);
+}
+
+// Outputs a HIGH value to a GPIO pin
+void gpio_pin_set_high(u8 pinNumber) {
+    REGS_GPIO->output_set.data[pinNumber / 32] = 1 << (pinNumber % 32);
+}
+
+// Outputs a LOW value to a GPIO pin
+void gpio_pin_set_low(u8 pinNumber) {
+    REGS_GPIO->output_clear.data[pinNumber / 32] = 1 << (pinNumber % 32);
+}
