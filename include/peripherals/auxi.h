@@ -5,7 +5,7 @@
 #include "peripherals/base.h"
 
 // Structure of the register mapping for auxiliary peripherals (UART only)
-// RPI documentation 2.1 overview
+// RPI documentation 2.1 Overview
 struct AuxRegs {
     reg32 irq_status;    // Auxiliary Interrupt Status
     reg32 enables;       // Auxiliary Enable
