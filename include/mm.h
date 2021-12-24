@@ -9,7 +9,8 @@
 #define SECTION_SHIFT (PAGE_SHIFT + TABLE_SHIFT)
 #define PAGE_SIZE (1 << PAGE_SHIFT)
 
-#define LOW_MEMORY (2 * SECTION_SIZE)
+// Lowest memory address (start of stack)
+#define LOW_MEMORY (2 * SECTION_SHIFT)
 
 // Assembler breaks if function definitions in C-style are included
 #ifndef __ASSEMBLER__

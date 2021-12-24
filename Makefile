@@ -12,11 +12,14 @@ endif
 BOOTMNT ?= boot
 
 # ARM cross compiler toolchain
-ARMGNU ?= aarch64-none-elf
+ARMGNU ?= aarch64-elf
 
 # C operations (to compile properly)
 COPS = -DRPI_VERSION=$(RPI_VERSION) -Wall -nostdlib -nostartfiles -ffreestanding \
 	   -Iinclude -mgeneral-regs-only -mcpu=$(CPU_VER)
+
+# ASM operations (to compile properly)
+ASMOPS = -Iinclude
 
 # Directory for object files to live (and die)
 BUILD_DIR = build
@@ -54,7 +57,7 @@ DEP_FILES = $(OBJ_FILES:%.o=%.d)
 # Build target for kernel8.img
 kernel8.img: $(SRC_DIR)/linker.ld $(OBJ_FILES)
 	@echo "Building for RPI $(value RPI_VERSION)"
-	@echo "Deploying to $(value BUILD_DIR)"
+	@echo "Deploying to $(value BOOTMNT)"
 	@echo ""
 	$(ARMGNU)-ld -T $(SRC_DIR)/linker.ld -o $(BUILD_DIR)/kernel8.elf $(OBJ_FILES)
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BUILD_DIR)/kernel8.img
