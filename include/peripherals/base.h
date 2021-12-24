@@ -1,5 +1,5 @@
 #pragma once
-// Contains base peripheral addresses.
+// Contains peripheral base addresses for various RPI versions.
 
 // https://github.com/raspberrypi/linux/tree/rpi-5.4.y/arch/arm/boot/dts/bcm2837.dtsi
 #if RPI_VERSION == 3
