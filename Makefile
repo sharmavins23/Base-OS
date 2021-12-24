@@ -12,11 +12,11 @@ endif
 BOOTMNT ?= boot
 
 # ARM cross compiler toolchain
-ARMGNU ?= aarch64-elf
+ARMGNU ?= aarch64-none-elf
 
 # C operations (to compile properly)
 COPS = -DRPI_VERSION=$(RPI_VERSION) -Wall -nostdlib -nostartfiles -ffreestanding \
-	   -Iinclude -mgeneral-regs-only -mcpu=$(CPU_VER)
+	   -Iinclude -mgeneral-regs-only
 
 # ASM operations (to compile properly)
 ASMOPS = -Iinclude
