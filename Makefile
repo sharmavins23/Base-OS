@@ -1,11 +1,19 @@
+# !!! Change this to your specific Raspberry Pi version
 RPI_VERSION ?= 4
+
+# Set the CPU architecture based on the Raspberry Pi version
+ifeq ($(RPI_VERSION), 4)
+CPU_VER ?= cortex-a72
+else
+CPU_VER ?= cortex-a53
+endif
 
 BOOTMNT ?= boot
 
-ARMGNU ?= arm-none-eabi
+ARMGNU ?= aarch64-none-elf
 
 COPS = -DRPI_VERSION=$(RPI_VERSION) -Wall -nostdlib -nostartfiles -ffreestanding \
-	   -Iinclude -mgeneral-regs-only
+	   -Iinclude -mgeneral-regs-only -mcpu=$(CPU_VER)
 
 BUILD_DIR = build
 SRC_DIR = src
