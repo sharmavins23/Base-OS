@@ -4,6 +4,20 @@ A basic operating system that runs Assembly code, simplifies pin configurations
 via Assembly callables, and allows for basic UART operation on the Raspberry Pi
 3 and 4.
 
+## Definition Order
+
+The following is the (rough) order this project was created in:
+
+1. `Makefile`
+2. `boot/config.txt`
+3. `include/peripherals/base.h`
+4. `include/common.h`
+5. `include/utils.h` and `src/utils.s`
+6. `include/mm.h` and `src/mm.s`
+7. `src/kernel.c` and `src/boot.s`
+8. `include/mini_uart.h` and `include/peripherals/auxi.h`
+9. `include/peripherals/gpio.h` and `src/gpio.c`
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
