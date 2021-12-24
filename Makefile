@@ -1,4 +1,4 @@
-RPI_VERSION ?= 4
+RPI_VERSION ?= 3
 
 BOOTMNT ?= boot
 
@@ -12,15 +12,15 @@ SRC_DIR = src
 
 all : kernel8.img
 
-clean :
-	rm -rf $(BUILD_DIR) *.img
+clean : 
+	del $(BUILD_DIR)\*.img
+	del $(BOOTMNT)\kernel8.img
+	del $(BOOTMNT)\kernel8-rpi4.img
 
 $(BUILD_DIR)/%_c.o: $(SRC_DIR)/%.c
-	mkdir -p $(@D)
 	$(ARMGNU)-gcc $(COPS) -MMD -c $< -o $@
 
 $(BUILD_DIR)/%_s.o: $(SRC_DIR)/%.s
-	mkdir -p $(@D)
 	$(ARMGNU)-gcc $(COPS) -MMD -c $< -o $@
 
 C_FILES = $(wildcard $(SRC_DIR)/*.c)
@@ -36,10 +36,9 @@ kernel8.img: $(SRC_DIR)/linker.ld $(OBJ_FILES)
 	@echo "Deploying to $(value BUILD_DIR)"
 	@echo ""
 	$(ARMGNU)-ld -T $(SRC_DIR)/linker.ld -o $(BUILD_DIR)/kernel8.elf $(OBJ_FILES)
-	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary kernel8.img
+	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BUILD_DIR)/kernel8.img
 ifeq ($(RPI_VERSION), 4)
-	cp kernel8.img $(BOOTMNT)/kernel8-rpi4.img
+	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BOOTMNT)/kernel8-rpi4.img
 else
-	cp kernel8.img $(BOOTMNT)/
+	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BOOTMNT)/kernel8.img
 endif
-	cp config.txt $(BOOTMNT)/
