@@ -1,5 +1,4 @@
 #include    "mm.h"
-#include    "kernel.c"
 
 .section    ".text.boot"
 
