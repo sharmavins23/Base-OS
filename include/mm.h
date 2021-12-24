@@ -1,8 +1,6 @@
 #pragma once
 // Contains declarations for memory management/stack management functions
 
-#include "common.h"
-
 // Definitions for pages, page tables from Linux src
 #define PAGE_SHIFT 12
 #define TABLE_SHIFT 9
