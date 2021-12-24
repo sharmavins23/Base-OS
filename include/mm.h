@@ -1,6 +1,8 @@
 #pragma once
 // Contains declarations for memory management/stack management functions
 
+#include "common.h"
+
 // Definitions for pages, page tables from Linux src
 #define PAGE_SHIFT 12
 #define TABLE_SHIFT 9
@@ -11,5 +13,5 @@
 
 // Assembler breaks if function definitions in C-style are included
 #ifndef __ASSEMBLER__
-void memzero(unsigned long src, unsigned int n);
+void memzero(u64 src, u32 n);
 #endif
