@@ -14,6 +14,8 @@ typedef enum _GpioFunc {
     GFAlt5 = 2     // GPIO Pin takes alternate function 5
 } GpioFunc;
 
+// GFAlt functions defined at https://www.dummies.com/article/technology/computers/hardware/raspberry-pi/raspberry-pi-gpio-pin-alternate-functions-143761
+
 // Sets a GPIO pin to a specified function
 void gpio_pin_set_func(u8 pinNumber, GpioFunc func);
 
