@@ -13,5 +13,6 @@
 
 // Assembler breaks if function definitions in C-style are included
 #ifndef __ASSEMBLER__
+// Stores N null bits(?) starting in a specified address
 void memzero(u64 src, u32 n);
 #endif
