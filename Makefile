@@ -16,7 +16,7 @@ ARMGNU ?= aarch64-none-elf
 
 # C operations (to compile properly)
 COPS = -DRPI_VERSION=$(RPI_VERSION) -Wall -nostdlib -nostartfiles -ffreestanding \
-	   -Iinclude -mgeneral-regs-only
+	   -Iinclude -mgeneral-regs-only -mcpu=$(CPU_VER)
 
 # ASM operations (to compile properly)
 ASMOPS = -Iinclude
@@ -48,7 +48,7 @@ $(BUILD_DIR)/%_s.o: $(SRC_DIR)/%.S
 C_FILES = $(wildcard $(SRC_DIR)/*.c)
 ASM_FILES = $(wildcard $(SRC_DIR)/*.S)
 OBJ_FILES = $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%_c.o)
-OBJ_FILES = $(ASM_FILES:$(SRC_DIR)/%.S=$(BUILD_DIR)/%_s.o)
+OBJ_FILES += $(ASM_FILES:$(SRC_DIR)/%.S=$(BUILD_DIR)/%_s.o)
 
 # Build targets for dependency files
 DEP_FILES = $(OBJ_FILES:%.o=%.d)
@@ -56,9 +56,9 @@ DEP_FILES = $(OBJ_FILES:%.o=%.d)
 
 # Build target for kernel8.img
 kernel8.img: $(SRC_DIR)/linker.ld $(OBJ_FILES)
-	@echo "Building for RPI $(value RPI_VERSION)"
-	@echo "Deploying to $(value BOOTMNT)"
-	@echo ""
+	@echo Building for RPI $(value RPI_VERSION)
+	@echo Deploy to $(value BOOTMNT)
+	@echo Using $(value ARMGNU)
 	$(ARMGNU)-ld -T $(SRC_DIR)/linker.ld -o $(BUILD_DIR)/kernel8.elf $(OBJ_FILES)
 	$(ARMGNU)-objcopy $(BUILD_DIR)/kernel8.elf -O binary $(BUILD_DIR)/kernel8.img
 ifeq ($(RPI_VERSION), 4)
