@@ -17,6 +17,7 @@ The following is the (rough) order this project was created in:
 7. `src/kernel.c` and `src/boot.s`
 8. `include/peripherals/gpio.h` and `src/gpio.c`
 9. `include/mini_uart.h` and `include/peripherals/auxi.h` and `src/mini_uart.c`
+10. `src/linker.ld`
 
 # License TL;DR
 
