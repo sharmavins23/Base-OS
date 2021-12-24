@@ -1,5 +1,5 @@
 #pragma once
-// Contains UART and SPI definitions for peripheral addressing
+// Contains UART definitions for peripheral addressing
 
 #include "common.h"
 #include "peripherals/base.h"
