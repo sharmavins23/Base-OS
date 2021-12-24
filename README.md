@@ -15,8 +15,8 @@ The following is the (rough) order this project was created in:
 5. `include/utils.h` and `src/utils.s`
 6. `include/mm.h` and `src/mm.s`
 7. `src/kernel.c` and `src/boot.s`
-8. `include/mini_uart.h` and `include/peripherals/auxi.h`
-9. `include/peripherals/gpio.h` and `src/gpio.c`
+8. `include/peripherals/gpio.h` and `src/gpio.c`
+9. `include/mini_uart.h` and `include/peripherals/auxi.h` and `src/mini_uart.c`
 
 # License TL;DR
 
